@@ -8,31 +8,12 @@ resource "aws_security_group" "TF_SG" {
   }
 }
 
-resource "aws_security_group" "TF_SG2" {
-  name        = "Dusra_SG"
-  description = "Allow TLS inbound traffic and all outbound traffic"
-  vpc_id      = "vpc-0671aeda10b05ebd9"
-
-  tags = {
-    Name = "Terraform_SG"
-  }
-}
-
 # Ingress rule to allow HTTPS traffic on port 443
 resource "aws_vpc_security_group_ingress_rule" "allow_tls_ipv4_443" {
   security_group_id = aws_security_group.TF_SG.id
   cidr_ipv4   = "0.0.0.0/0"
   from_port   = 443
   to_port     = 443
-  ip_protocol = "tcp"
-  description = "Allow HTTPS traffic"
-}
-
-resource "aws_vpc_security_group_ingress_rule" "allow_tls_ipv4_443_2" {
-  security_group_id = aws_security_group.TF_SG2.id
-  referenced_security_group_id = aws_security_group.TF_SG.id
-  from_port   = 22
-  to_port     = 22
   ip_protocol = "tcp"
   description = "Allow HTTPS traffic"
 }
