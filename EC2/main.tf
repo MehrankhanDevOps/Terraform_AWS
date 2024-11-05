@@ -16,17 +16,6 @@ resource "aws_instance" "EC2" {
 
 }
 
-resource "aws_instance" "EC22" {
-  ami           = "ami-005fc0f236362e99f"
-  instance_type = "t2.micro"
-  key_name = "TF_key"
-  security_groups = [aws_security_group.TF_SG.name]
-
-
-  tags = {
-    Name = "Test Tera2"
-  }
-
 }
 
 
